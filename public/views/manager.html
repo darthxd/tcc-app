@@ -1,0 +1,135 @@
+{{block "manager_home" .}}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"
+      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Gerenciamento</title>
+  </head>
+<body>
+  <section class="flex h-screen w-full">
+    {{template "manager_sidebar" .}}
+    <div class="flex w-full justify-center items-center">
+      <h1>Página Gerenciamento</h1>
+    </div>
+  </section>
+</body>
+</html>
+{{end}}
+
+{{block "manager_sidebar" .}}
+<aside class="h-screen w-fit" x-data="{ expanded: $persist(true) }">
+  <nav class="h-full flex flex-col bg-[#2a2a2a] text-gray-300 border-r shadow-sm">
+    <div class="py-2.5 px-3 flex items-center justify-between border-b border-[#383838]">
+			<label class="text-2xl text-nowrap overflow-hidden transition-all" :class="expanded ? 'w-52' : 'w-0' ">Gerenciamento</label>
+			<button x-on:click="expanded = !expanded" class="p-1.5 w-10 h-10 rounded-lg bg-[#383838] hover:bg-[#4f4f4f] cursor-pointer transition-colors" :class=" expanded ? '' : 'mx-auto' ">
+			  <template x-if="expanded == true">
+          <i class="fa-solid fa-chevron-left"></i>
+				</template>
+				<template x-if="expanded == false">
+          <i class="fa-solid fa-chevron-right"></i>
+				</template>
+			</button>
+		</div>
+    <ul class="mt-2 flex-1 px-3">
+
+      <li
+        class="bg-gradient-to-bl from-blue-700 to-blue-600 relative text-lg flex items-center justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group">
+        <i class="fa-solid fa-users-gear"></i>
+        <span class="overflow-hidden transition-all text-nowrap text-gray-300"
+          :class=" expanded ? 'w-52 ml-3' : 'w-0 ml-0' ">
+          Alunos cadastrados
+        </span>
+        <template x-if="!expanded">
+          <div
+            class="absolute left-full rounded-md px-2 py-1 
+                ml-6 bg-blue-200 text-blue-800 text-sm text-nowrap
+                invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">
+          Alunos cadastrados
+          </div>
+        </template>
+      </li>
+
+      <li
+        class="hover:bg-[#4f4f4f] relative text-lg flex items-center justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <span class="overflow-hidden transition-all text-nowrap text-gray-300"
+          :class=" expanded ? 'w-52 ml-3' : 'w-0 ml-0' ">
+          Cadastrar aluno
+        </span>
+        <template x-if="!expanded">
+          <div
+            class="absolute left-full rounded-md px-2 py-1 
+                ml-6 bg-blue-200 text-blue-800 text-sm text-nowrap
+                invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">
+          Cadastrar aluno
+          </div>
+        </template>
+      </li>
+
+      <li
+        class="hover:bg-[#4f4f4f] relative text-lg flex items-center justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span class="overflow-hidden transition-all text-nowrap text-gray-300"
+          :class=" expanded ? 'w-52 ml-3' : 'w-0 ml-0' ">
+          Avisos
+        </span>
+        <template x-if="!expanded">
+          <div
+            class="absolute left-full rounded-md px-2 py-1 
+                ml-6 bg-blue-200 text-blue-800 text-sm text-nowrap
+                invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">
+            Avisos
+          </div>
+        </template>
+      </li>
+
+      <li
+        class="hover:bg-[#4f4f4f] relative text-lg flex items-center justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group">
+        <i class="fa-solid fa-gear"></i>
+        <span class="overflow-hidden transition-all text-nowrap text-gray-300"
+          :class=" expanded ? 'w-52 ml-3' : 'w-0 ml-0' ">
+          Configurações
+        </span>
+        <template x-if="!expanded">
+          <div
+            class="absolute left-full rounded-md px-2 py-1 
+                ml-6 bg-blue-200 text-blue-800 text-sm text-nowrap
+                invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">
+            Configurações
+          </div>
+        </template>
+      </li>
+
+     </ul>
+
+			<div class="border-t border-[#383838] flex p-3">
+				<img
+					src="https://cdn.discordapp.com/avatars/613715798816718919/3a3b62fd4f4e9c7f5baebfe57a803675?size=1024"
+					alt=""
+					class="w-10 h-10 rounded-full"
+					:class=" expanded ? '' : 'mx-auto' "
+				/>
+				<div class="flex justify-between items-center overflow-hidden transition-all" :class=" expanded ? 'w-52 ml-3' : 'w-0 ml-0' ">
+					<div class="leading-4">
+						<h4 class="font-semibold">Darthxd</h4>
+						<span class="text-xs text-gray-400">@darthxd</span>
+					</div>
+					<button class="cursor-pointer">
+            <i class="fa-solid fa-chevron-up"></i>
+					</button>
+				</div>
+			</div>
+  </nav>
+</aside>
+{{end}}
