@@ -36,7 +36,8 @@ func main() {
 	// Set up the main routes
 	student := e.Group("/aluno")
 	{
-		student.GET("/", handler.StudentRender)
+		student.GET("/info", handler.StudentInfo)
+		student.GET("/email", handler.StudentMail)
 	}
 
 	teacher := e.Group("/professor")
