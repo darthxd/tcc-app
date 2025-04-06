@@ -14,6 +14,6 @@ func StudentInfo(c echo.Context) error {
 
 func StudentMail(c echo.Context) error {
 	return c.Render(http.StatusOK, "student_mail", echo.Map{
-		"active":"mail",
+		"active":"email",
 	})
 }
