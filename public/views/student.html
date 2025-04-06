@@ -20,7 +20,22 @@
   <section class="flex h-screen w-full">
     {{template "student_sidebar" .}}
     <div class="flex w-full justify-center items-center">
-      <h1>Página Alunos</h1>
+        <div class="w-4/5 h-4/5 m-10 grid grid-cols-3 gap-2 grid-rows-2">
+          <div 
+            class="flex justify-center items-start col-span-2 border 
+                border-gray-200 shadow rounded-md">
+            <h1 class="text-xl py-2">Pendências</h1>
+          </div>
+          <div class="flex justify-center items-start row-span-2 border 
+                border-gray-200 shadow rounded-md">
+            <h1 class="text-xl py-2">Avisos</h1>
+          </div>
+          <div 
+            class="flex justify-center items-start col-span-2 bg-[#383838] 
+                  border border-gray-600 shadow rounded-md">
+            <h1 class="text-xl text-gray-50 py-2">Horário</h1>
+          </div>
+        </div>
     </div>
   </section>
 </body>
