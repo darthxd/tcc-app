@@ -1,21 +1,7 @@
 {{block "student_home" .}}
 <!doctype html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script src="https://unpkg.com/htmx.org@2.0.4"
-      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-      crossorigin="anonymous"></script>
-  <link rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Aluno</title>
-</head>
+{{template "student_head" .}}
 <body>
   <section class="flex h-screen w-full">
     {{template "student_sidebar" .}}
@@ -124,21 +110,7 @@
 {{block "student_mail" .}}
 <!doctype html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script src="https://unpkg.com/htmx.org@2.0.4"
-      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-      crossorigin="anonymous"></script>
-  <link rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Email institucional</title>
-</head>
+{{template "student_head" .}}
 <body>
   <section class="flex h-screen w-full">
       {{template "student_sidebar" .}} 
@@ -179,7 +151,6 @@
         alt="Foto do aluno">
     </div>
     <ul class="mt-2 flex-1 px-3">
-
       <li>
         <a 
           href="/aluno/info"
@@ -207,7 +178,6 @@
           </template>
         </a>
       </li>
-
       <li
         class='relative text-lg flex items-center 
               justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer 
@@ -232,7 +202,6 @@
           </div>
         </template>
       </li>
-
       <li>
         <a 
           href="/aluno/email" 
@@ -260,7 +229,6 @@
           </template>
         </a>
       </li>
-      
       <li
         class='relative text-lg flex items-center 
               justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer 
@@ -285,7 +253,6 @@
           </div>
         </template>
       </li>
-
       <li
         class='relative text-lg flex items-center 
               justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer 
@@ -295,10 +262,10 @@
               {{else}} 
                 hover:bg-[#4f4f4f] 
               {{end}}'>
-        <i class="fa-solid fa-circle-exclamation"></i>
+        <i class="fa-solid fa-circle-user"></i>
         <span class="overflow-hidden transition-all text-nowrap text-gray-300"
           :class=" expanded ? 'w-52 ml-3' : 'w-0 ml-0' ">
-          Avisos
+          Minha conta
         </span>
         <template x-if="!expanded">
           <div
@@ -306,11 +273,10 @@
                 ml-6 bg-blue-200 text-blue-800 text-sm text-nowrap
                 invisible opacity-20 -translate-x-3 transition-all group-hover:visible 
                 group-hover:opacity-100 group-hover:translate-x-0">
-            Avisos
+            Minha conta
           </div>
         </template>
       </li>
-
       <li
         class='relative text-lg flex items-center 
               justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer 
@@ -335,7 +301,6 @@
           </div>
         </template>
       </li>
-
       <li
         class='relative text-lg flex items-center 
               justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer 
@@ -360,9 +325,7 @@
           </div>
         </template>
       </li>
-
     </ul>
-
     <div class="h-15 border-t border-[#383838] flex items-center justify-center p-3">
       <button
         class="bg-[#a8323e] hover:bg-[#8c2a34] relative text-lg flex items-center 
@@ -385,7 +348,24 @@
         </template>
       </button>
     </div>
-
   </nav>
 </aside>
+{{end}}
+
+{{block "student_head" .}}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.4"
+      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+      crossorigin="anonymous"></script>
+  <link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>{{.title}}</title>
+</head>
 {{end}}
