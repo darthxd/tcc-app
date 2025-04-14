@@ -114,8 +114,43 @@
 <body>
   <section class="flex h-screen w-full">
       {{template "student_sidebar" .}} 
-    <div class="flex w-full justify-center items-center">
-    </div>
+    <main class="flex w-full justify-center items-center">
+        <div class="flex flex-col rounded-2xl w-full h-11/12 m-10 p-6 bg-[#383838]">
+          <div id="search-bar" class="w-3/4 relative text-2xl bg-[#4f4f4f] text-gray-300 border border-[#0f0f0f] rounded-2xl">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3"></i>
+            <input type="text" class="rounded-2xl w-full px-12 py-2 outline-none" placeholder="Pesquisar e-mail">
+          </div> 
+          <div id="emails" class="flex flex-col rounded-xl mt-5 w-full h-full bg-[#4f4f4f] text-gray-300 border border-[#0f0f0f]">
+            <div id="email-options" class="flex w-full h-12 relative text-xl border-b border-[#0f0f0f]">
+              <button class="cursor-pointer px-6 rounded-tl-xl bg-gradient-to-tr from-blue-700 to-blue-600">
+                <i class="fa-solid fa-inbox mr-1"></i>
+                <span>Principal</span>
+              </button>
+              <button class="cursor-pointer px-6 hover:bg-[#444444] border-l border-r border-[#0f0f0f]">
+                <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                <span>Importante</span>
+              </button>
+            </div> 
+            <ul id="emails" class="w-full h-full text-xl rounded-b-xl ">
+              <li class="h-10 flex justify-start items-center border-b border-[#0f0f0f]">
+                <i class="fa-solid fa-star text-yellow-600 cursor-pointer px-6 border-r border-[#0f0f0f]"></i>
+                <span class="px-6 border-r border-[#0f0f0f]">Escola</span>
+                <span class="px-6">Email exemplo 1</span>
+              </li>
+              <li class="h-10 flex justify-start items-center border-b border-[#0f0f0f]">
+                <i class="fa-solid fa-star cursor-pointer px-6 border-r border-[#0f0f0f]"></i>
+                <span class="px-6 border-r border-[#0f0f0f]">Escola</span>
+                <span class="px-6">Email exemplo 2</span>
+              </li>
+              <li class="h-10 flex justify-start items-center border-b border-[#0f0f0f]">
+                <i class="fa-solid fa-star cursor-pointer px-6 border-r border-[#0f0f0f]"></i>
+                <span class="px-6 border-r border-[#0f0f0f]">Escola</span>
+                <span class="px-6">Email exemplo 3</span>
+              </li>
+         </ul>
+          </div>
+        </div>
+    </main>
   </section>
 </body>
 </html>

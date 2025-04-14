@@ -36,6 +36,7 @@ func main() {
 	// Set up the main routes
 	student := e.Group("/aluno")
 	{
+		student.GET("", handler.StudentInfo)
 		student.GET("/info", handler.StudentInfo)
 		student.GET("/email", handler.StudentMail)
 	}
@@ -50,9 +51,12 @@ func main() {
 		manager.GET("/", handler.ManagerRender)
 	}
 
-	auth := e.Group("/conta")
+	login := e.Group("/login")
 	{
-		auth.GET("", handler.AuthRender)
+		login.GET("/", handler.LoginRender)
+		login.GET("/aluno", handler.LoginStudentRender)
+		login.GET("/professor", handler.LoginTeacherRender)
+		login.GET("/supervisao", handler.LoginManagerRender)
 	}
 
 	// Run the server
