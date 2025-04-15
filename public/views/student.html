@@ -162,7 +162,7 @@
     <div class="py-2.5 px-3 flex items-center justify-between border-b border-[#383838]">
 			<label 
         class="text-2xl text-nowrap overflow-hidden transition-all" 
-        :class="expanded ? 'w-52' : 'w-0' ">Gabriel Henrique</label>
+                :class="expanded ? 'w-52' : 'w-0' ">{{.student.Name}}</label>
 			<button 
         x-on:click="expanded = !expanded" 
         class="p-1.5 w-10 h-10 rounded-lg bg-[#383838] hover:bg-[#4f4f4f] cursor-pointer 
@@ -365,7 +365,9 @@
       <button
         class="bg-[#a8323e] hover:bg-[#8c2a34] relative text-lg flex items-center 
               justify-center py-1 px-3 rounded-md cursor-pointer transition-all group" 
-        :class="expanded ? 'w-full' : 'w-fit'">
+        :class="expanded ? 'w-full' : 'w-fit'"
+        hx-get="/aluno/sair"
+        >
         <i class="fa-solid fa-right-from-bracket"></i>
         <span 
           class="overflow-hidden transition-all text-nowrap text-gray-300"

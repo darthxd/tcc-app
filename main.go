@@ -2,16 +2,12 @@ package main
 
 import (
 	"log"
-	"os"
 	"text/template"
 
-	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
 
+	"github.com/darthxd/tcc-app/config"
 	"github.com/darthxd/tcc-app/handler"
-	"github.com/darthxd/tcc-app/models"
 )
 
 func main() {
@@ -21,17 +17,7 @@ func main() {
 	e.Renderer = t
 	e.Static("/assets", "public/static")
 
-	// Load .env and start the database
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
-	}
-	connStr := os.Getenv("DATABASE_URL")
-	port := os.Getenv("PORT")
-	db, err := gorm.Open(postgres.Open(connStr), &gorm.Config{})
-	if err != nil {
-		log.Fatal("Error connecting to the database")
-	}
-	db.AutoMigrate(&models.Student{})
+	config.Init()
 
 	// Set up the main routes
 	student := e.Group("/aluno")
@@ -39,6 +25,7 @@ func main() {
 		student.GET("", handler.StudentInfo)
 		student.GET("/info", handler.StudentInfo)
 		student.GET("/email", handler.StudentMail)
+		student.GET("/sair", handler.LogOut)
 	}
 
 	teacher := e.Group("/professor")
@@ -57,10 +44,11 @@ func main() {
 		login.GET("/aluno", handler.LoginStudentRender)
 		login.GET("/professor", handler.LoginTeacherRender)
 		login.GET("/supervisao", handler.LoginManagerRender)
+		login.POST("/aluno", handler.LoginStudent)
 	}
 
 	// Run the server
-	if err := e.Start(port); err != nil {
+	if err := e.Start(":5432"); err != nil {
 		log.Fatal(err)
 	}
 }
