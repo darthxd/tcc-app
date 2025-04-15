@@ -10,6 +10,7 @@ import (
 
 var (
 	db   *gorm.DB
+	port string
 )
 
 func Init() {
@@ -18,9 +19,14 @@ func Init() {
 		log.Fatal("Error loading .env file")
 	}
 	connStr := os.Getenv("DATABASE_URL")
+	port = os.Getenv("PORT")
 	db = DatabaseInit(connStr)
 }
 
 func GetDB() *gorm.DB {
 	return db
+}
+
+func GetPort() string {
+	return port
 }

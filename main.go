@@ -20,8 +20,11 @@ func main() {
 	e.Static("/assets", "public/static")
 
 	config.Init()
+	port := config.GetPort()
 
 	// Set up the main routes
+
+	e.GET("/", func(c echo.Context) error { return c.Redirect(http.StatusFound, "/login/") })
 
 	// Student routes
 	student := e.Group("/aluno")
@@ -67,7 +70,7 @@ func main() {
 	}
 
 	// Run the server
-	if err := e.Start(":5432"); err != nil {
+	if err := e.Start(port); err != nil {
 		log.Fatal(err)
 	}
 }
