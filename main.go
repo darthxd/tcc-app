@@ -2,10 +2,12 @@ package main
 
 import (
 	"log"
+	"net/http"
 	"text/template"
 
 	"github.com/labstack/echo"
 
+	"github.com/darthxd/tcc-app/auth"
 	"github.com/darthxd/tcc-app/config"
 	"github.com/darthxd/tcc-app/handler"
 )
@@ -22,10 +24,21 @@ func main() {
 	// Set up the main routes
 	student := e.Group("/aluno")
 	{
-		student.GET("", handler.StudentInfo)
-		student.GET("/info", handler.StudentInfo)
-		student.GET("/email", handler.StudentMail)
-		student.GET("/sair", handler.LogOut)
+		student.GET("", func(c echo.Context) error { return c.Redirect(http.StatusFound, "/aluno/") })
+		student.GET("/", auth.StudentMiddleware(func(c echo.Context) error {
+			return c.Redirect(http.StatusFound, "/aluno/info")
+		}, func(c echo.Context) error { 
+			return c.Redirect(http.StatusFound, "/login/") 
+		}))
+		student.GET("/info", auth.StudentMiddleware(handler.StudentInfo, func(c echo.Context) error {
+			return c.Redirect(http.StatusFound, "/login/")
+		}))
+		student.GET("/email", auth.StudentMiddleware(handler.StudentMail, func(c echo.Context) error {
+			return c.Redirect(http.StatusFound, "/login/")
+		}))
+		student.GET("/sair", auth.StudentMiddleware(handler.LogOut, func(c echo.Context) error {
+			return c.Redirect(http.StatusFound, "/login/")
+		}))
 	}
 
 	teacher := e.Group("/professor")
@@ -40,7 +53,8 @@ func main() {
 
 	login := e.Group("/login")
 	{
-		login.GET("/", handler.LoginRender)
+		login.GET("", func(c echo.Context) error { return c.Redirect(http.StatusFound, "/login/") })
+		login.GET("/", handler.LoginPageRender)
 		login.GET("/aluno", handler.LoginStudentRender)
 		login.GET("/professor", handler.LoginTeacherRender)
 		login.GET("/supervisao", handler.LoginManagerRender)

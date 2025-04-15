@@ -13,6 +13,6 @@ func DatabaseInit(connStr string) *gorm.DB {
 	if err != nil {
 		log.Fatal("Error connecting to the database")
 	}
-	db.AutoMigrate(&models.Student{})
+	db.AutoMigrate(&models.Student{}, &models.Teacher{}, &models.Manager{})
 	return db
 }
