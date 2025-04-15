@@ -30,39 +30,31 @@ func main() {
 	student := e.Group("/aluno")
 	{
 		student.GET("", func(c echo.Context) error { return c.Redirect(http.StatusFound, "/aluno/") })
-		student.GET("/", auth.StudentMiddleware(func(c echo.Context) error {
+		student.GET("/", auth.DefaultMiddleware("student", func(c echo.Context) error {
 			return c.Redirect(http.StatusFound, "/aluno/info")
-		}, func(c echo.Context) error { 
-			return c.Redirect(http.StatusFound, "/login/") 
 		}))
-		student.GET("/info", auth.StudentMiddleware(handler.StudentInfo, func(c echo.Context) error {
-			return c.Redirect(http.StatusFound, "/login/")
-		}))
-		student.GET("/email", auth.StudentMiddleware(handler.StudentMail, func(c echo.Context) error {
-			return c.Redirect(http.StatusFound, "/login/")
-		}))
-		student.GET("/sair", auth.StudentMiddleware(handler.LogOut, func(c echo.Context) error {
-			return c.Redirect(http.StatusFound, "/login/")
-		}))
+		student.GET("/info", auth.DefaultMiddleware("student", handler.StudentInfo))
+		student.GET("/email", auth.DefaultMiddleware("student", handler.StudentMail))
+		student.GET("/sair", auth.DefaultMiddleware("student", handler.LogOut))
 	}
 
 	// Teacher routes
 	teacher := e.Group("/professor")
 	{
-		teacher.GET("/", handler.TeacherRender)
+		teacher.GET("/", auth.DefaultMiddleware("teacher", handler.TeacherRender))
 	}
 
 	// Management routes
 	manager := e.Group("/gerenciamento")
 	{
-		manager.GET("/", handler.ManagerRender)
+		manager.GET("/", auth.DefaultMiddleware("manager", handler.ManagerRender))
 	}
 
 	// Login page routes
 	login := e.Group("/login")
 	{
 		login.GET("", func(c echo.Context) error { return c.Redirect(http.StatusFound, "/login/") })
-		login.GET("/", handler.LoginPageRender)
+		login.GET("/", auth.LoginMiddleware())
 		login.GET("/aluno", handler.LoginStudentRender)
 		login.GET("/professor", handler.LoginTeacherRender)
 		login.GET("/supervisao", handler.LoginManagerRender)
