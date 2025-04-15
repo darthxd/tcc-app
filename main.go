@@ -22,6 +22,8 @@ func main() {
 	config.Init()
 
 	// Set up the main routes
+
+	// Student routes
 	student := e.Group("/aluno")
 	{
 		student.GET("", func(c echo.Context) error { return c.Redirect(http.StatusFound, "/aluno/") })
@@ -41,16 +43,19 @@ func main() {
 		}))
 	}
 
+	// Teacher routes
 	teacher := e.Group("/professor")
 	{
 		teacher.GET("/", handler.TeacherRender)
 	}
 
+	// Management routes
 	manager := e.Group("/gerenciamento")
 	{
 		manager.GET("/", handler.ManagerRender)
 	}
 
+	// Login page routes
 	login := e.Group("/login")
 	{
 		login.GET("", func(c echo.Context) error { return c.Redirect(http.StatusFound, "/login/") })

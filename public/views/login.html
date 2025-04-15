@@ -6,6 +6,8 @@
     <section id="main" class="flex h-screen w-full justify-center items-center">
         {{template "login_student" .}}
     </section>
+    <script src="/assets/js/formatter.js"></script>
+    <script src="/assets/js/util.js"></script>
 </body>
 </html>
 {{end}} 
@@ -32,11 +34,14 @@
             <div class="flex items-center justify-center w-full gap-x-5">
                 <div class="inline-flex items-center justify-center">
                     <span class="text-xl mr-5">RM:</span>
-                    <input type="text" name="user" id="user" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
+                    <input type="text" name="user" id="rm" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
                 </div>
-                <div class="inline-flex items-center justify-center">
+                <div class="inline-flex items-center justify-center relative">
                     <span class="text-xl mr-5">Senha:</span>
-                    <input type="text" name="password" id="password" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
+                    <input type="password" name="password" id="password" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
+                    <a class="cursor-pointer absolute top-2.5 right-4 text-xl" id="show_button">
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
                 </div>
             </div>
             <a href="" class="cursor-pointer text-lg text-[#5994ff] hover:text-blue-600">Recuperar senha</a>
@@ -73,10 +78,13 @@
                     <span class="text-xl mr-5">Login:</span>
                     <input type="text" name="user" id="user" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
                 </div>
-                <div class="inline-flex items-center justify-center">
+                <div class="inline-flex items-center justify-center relative">
                     <span class="text-xl mr-5">Senha:</span>
-                    <input type="text" name="password" id="password" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
-                </div>
+                    <input type="password" name="password" id="password" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
+                     <a class="cursor-pointer absolute top-2.5 right-4 text-xl" id="show_button">
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
+               </div>
             </div>
             <a href="" class="cursor-pointer text-lg text-[#5994ff] hover:text-blue-600">Recuperar senha</a>
         </div>
@@ -112,10 +120,13 @@
                     <span class="text-xl mr-5">Login:</span>
                     <input type="text" name="user" id="user" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
                 </div>
-                <div class="inline-flex items-center justify-center">
+                <div class="inline-flex items-center justify-center relative">
                     <span class="text-xl mr-5">Senha:</span>
-                    <input type="text" name="password" id="password" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
-                </div>
+                    <input type="password" name="password" id="password" class="h-12 border-2 px-4 text-xl border-gray-300 rounded-md shadow-xl outline-none">
+                    <a class="cursor-pointer absolute top-2.5 right-4 text-xl" id="show_button">
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
+               </div>
             </div>
             <a href="" class="cursor-pointer text-lg text-[#5994ff] hover:text-blue-600">Recuperar senha</a>
         </div>
