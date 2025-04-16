@@ -51,10 +51,10 @@ func DefaultMiddleware(s_type string, next echo.HandlerFunc) echo.HandlerFunc {
 		is_authenticated := false
 		db = config.GetDB()
 		cookie, err := c.Cookie("session")
-		if err != nil {
+		if err != nil { // Checks if the session cookie exists
 			return c.Redirect(http.StatusFound, "/login/")
 		}
-		for _, s := range sessions {
+		for _, s := range sessions { // Check the authentication type
 			if s.SessionId == cookie.Value && s.Type == "student" {
 				is_authenticated = true
 				auth_type = "student"
@@ -67,8 +67,8 @@ func DefaultMiddleware(s_type string, next echo.HandlerFunc) echo.HandlerFunc {
 			}
 		}
 		if is_authenticated {
-			switch s_type {
-			case "student":
+			switch s_type { // Switch between the authentication types
+	 		case "student":
 				switch auth_type {
 				case "student":
 					return next(c)
@@ -104,7 +104,7 @@ func DefaultMiddleware(s_type string, next echo.HandlerFunc) echo.HandlerFunc {
 			default:
 				return c.Redirect(http.StatusFound, "/login/")
 			}
-		} else {
+		} else { // If no authentication, return to the login page
 			return c.Redirect(http.StatusFound, "/login/")
 		}
 	}

@@ -16,11 +16,13 @@ var (
 func Init() {
 	// Load .env and start the database
 	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
+		log.Print("Error loading .env file")
+		port = ":8080"
 	}
-	connStr := os.Getenv("DATABASE_URL")
+	// connStr := os.Getenv("DATABASE_URL")
 	port = os.Getenv("PORT")
-	db = DatabaseInit(connStr)
+	// db = DatabaseInit(connStr)
+	db = SQLiteInit()
 }
 
 func GetDB() *gorm.DB {

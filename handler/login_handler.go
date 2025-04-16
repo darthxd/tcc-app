@@ -40,10 +40,14 @@ func LoginStudent(c echo.Context) error {
 		})
 	}
 	auth.SetCookie(c, "session", session.SessionId)
-	return Redirect(c, "/aluno/")
+
+	c.Response().Header().Set("HX-Redirect", "/aluno")
+	return nil
 }
 
 func LogOut(c echo.Context) error {
 	auth.DeleteCookie(c, "session")
-	return Redirect(c, "/login/")
+
+	c.Response().Header().Set("HX-Redirect", "/login")
+	return nil
 }
