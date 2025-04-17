@@ -29,7 +29,7 @@ func StudentInfo(c echo.Context) error {
 	}	
 
 	return c.Render(http.StatusOK,"student_home", echo.Map{
-		"title":"Informações",
+		"title":fmt.Sprintf("%s - Informações", student.Name),
 		"active":"info",
 		"student":student,
 	})
@@ -50,7 +50,7 @@ func StudentMail(c echo.Context) error {
 	}
 
 	return c.Render(http.StatusOK, "student_mail", echo.Map{
-		"title":"E-mail",
+		"title":fmt.Sprintf("%s - E-mail", student.Name),
 		"active":"email",
 		"student":student,
 	})

@@ -18,9 +18,10 @@ func Init() {
 	if err := godotenv.Load(); err != nil {
 		log.Print("Error loading .env file")
 		port = ":8080"
+	} else {
+		// connStr := os.Getenv("DATABASE_URL")
+		port = os.Getenv("PORT")
 	}
-	// connStr := os.Getenv("DATABASE_URL")
-	port = os.Getenv("PORT")
 	// db = DatabaseInit(connStr)
 	db = SQLiteInit()
 }
