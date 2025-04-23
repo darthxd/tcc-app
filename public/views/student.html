@@ -156,6 +156,18 @@
 </html>
 {{end}}
 
+{{block "student_account" .}}
+<!DOCTYPE html>
+<html lang="pt-br">
+{{template "student_head" .}}
+<body>
+    <section class="flex h-screen w-full">
+    {{template "student_sidebar" .}}
+    </section>
+</body>
+</html>
+{{end}}
+
 {{block "student_sidebar" .}}
 <aside class="h-screen w-fit" x-data="{ expanded: $persist(true) }">
   <nav class="h-full flex flex-col bg-[#2a2a2a] text-gray-300 border-r shadow-sm">
@@ -288,11 +300,13 @@
           </div>
         </template>
       </li>
-      <li
+      <li>
+        <a 
+        href="/aluno/conta"
         class='relative text-lg flex items-center 
               justify-center py-1 px-3 my-1 font-medium rounded-md cursor-pointer 
               transition-colors group 
-              {{if eq .active "avisos"}} 
+              {{if eq .active "conta"}} 
                 bg-gradient-to-bl from-blue-700 to-blue-600 
               {{else}} 
                 hover:bg-[#4f4f4f] 
@@ -311,6 +325,7 @@
             Minha conta
           </div>
         </template>
+        </a>
       </li>
       <li
         class='relative text-lg flex items-center 

@@ -21,6 +21,7 @@ func routesInit(e *echo.Echo) {
 		}))
 		student.GET("/info", auth.DefaultMiddleware("student", handler.StudentInfo))
 		student.GET("/email", auth.DefaultMiddleware("student", handler.StudentMail))
+		student.GET("/conta", auth.DefaultMiddleware("student", handler.StudentAccount))
 		student.GET("/sair", auth.DefaultMiddleware("student", handler.LogOut))
 	}
 

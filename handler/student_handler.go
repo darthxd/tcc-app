@@ -55,3 +55,24 @@ func StudentMail(c echo.Context) error {
 		"student":student,
 	})
 }
+
+func StudentAccount(c echo.Context) error {
+	student := models.Student{}
+	sessions := auth.GetSessions()
+	cookie, _ := c.Cookie("session")
+	for _, s := range sessions {
+		if s.SessionId == cookie.Value {
+			if s.Type == "student" {
+				if err := db.Where("rm = ? AND password = ?", s.User, s.Password).First(&student).Error; err != nil {
+					log.Error(err)
+				}
+			}
+		}
+	}
+
+	return c.Render(http.StatusOK, "student_account", echo.Map{
+		"title":fmt.Sprintf("%s - Conta", student.Name),
+		"active":"conta",
+		"student":student,
+	})
+}
