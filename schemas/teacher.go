@@ -1,4 +1,4 @@
-package models
+package schemas
 
 type Teacher struct {
 	ID       uint

@@ -3,8 +3,8 @@ package router
 import (
 	"net/http"
 
-	"github.com/darthxd/tcc-app/auth"
-	"github.com/darthxd/tcc-app/handler"
+	"github.com/darthxd/tcc-app/http/auth"
+	"github.com/darthxd/tcc-app/http/handler"
 	"github.com/labstack/echo"
 )
 

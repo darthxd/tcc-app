@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/darthxd/tcc-app/config"
-	"github.com/darthxd/tcc-app/models"
+	"github.com/darthxd/tcc-app/schemas"
 	"github.com/labstack/echo"
 	"gorm.io/gorm"
 )
@@ -60,7 +60,7 @@ func DeleteCookie(c echo.Context, cookie_name string) error {
 	cookie.Name = cookie_name
 	cookie.Value = ""
 	cookie.MaxAge = -1
-	cookie.Expires = time.Now().Add(-7*24*time.Hour)
+	cookie.Expires = time.Now().Add(-7 * 24 * time.Hour)
 	cookie.Path = "/"
 	c.SetCookie(cookie)
 
@@ -74,7 +74,7 @@ func AuthenticateStudent(user, password string) (Session, error) {
 	session_exists := false
 
 	// Check if the user and password matches an database entry
-	student := models.Student{}
+	student := schemas.Student{}
 	if err := db.Where("rm = ? AND password = ?", user, password).First(&student).Error; err != nil {
 		return Session{}, err
 	}
@@ -112,7 +112,7 @@ func AuthenticateTeacher(user, password string) (Session, error) {
 	session_exists := false
 
 	// Check if the user and password matches an database entry
-	teacher := models.Teacher{}
+	teacher := schemas.Teacher{}
 	if err := db.Where("user = ? AND password = ?", user, password).First(&teacher).Error; err != nil {
 		return Session{}, err
 	}
@@ -150,7 +150,7 @@ func AuthenticateManager(user, password string) (Session, error) {
 	session_exists := false
 
 	// Check if the user and password matches an database entry
-	manager := models.Manager{}
+	manager := schemas.Manager{}
 	if err := db.Where("user = ? AND password = ?", user, password).First(&manager).Error; err != nil {
 		return Session{}, err
 	}

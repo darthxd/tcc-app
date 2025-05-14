@@ -3,7 +3,7 @@ package handler
 import (
 	"net/http"
 
-	"github.com/darthxd/tcc-app/auth"
+	"github.com/darthxd/tcc-app/http/auth"
 	"github.com/labstack/echo"
 	"gorm.io/gorm"
 )

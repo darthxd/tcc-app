@@ -45,7 +45,7 @@ func LoginMiddleware() echo.HandlerFunc {
 	}
 }
 
-func DefaultMiddleware(s_type string, next echo.HandlerFunc) echo.HandlerFunc {
+func _DefaultMiddleware(s_type string, next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var auth_type string
 		is_authenticated := false
@@ -68,7 +68,7 @@ func DefaultMiddleware(s_type string, next echo.HandlerFunc) echo.HandlerFunc {
 		}
 		if is_authenticated {
 			switch s_type { // Switch between the authentication types
-	 		case "student":
+			case "student":
 				switch auth_type {
 				case "student":
 					return next(c)
@@ -78,7 +78,7 @@ func DefaultMiddleware(s_type string, next echo.HandlerFunc) echo.HandlerFunc {
 					return c.Redirect(http.StatusFound, "/gerenciamento/")
 				default:
 					return c.Redirect(http.StatusFound, "/login/")
-			}
+				}
 			case "teacher":
 				switch auth_type {
 				case "student":
@@ -107,5 +107,11 @@ func DefaultMiddleware(s_type string, next echo.HandlerFunc) echo.HandlerFunc {
 		} else { // If no authentication, return to the login page
 			return c.Redirect(http.StatusFound, "/login/")
 		}
+	}
+}
+
+func DefaultMiddleware(s_type string, next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		return next(c)
 	}
 }

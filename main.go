@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/darthxd/tcc-app/config"
-	"github.com/darthxd/tcc-app/router"
+	"github.com/darthxd/tcc-app/http/router"
 )
 
 func main() {
