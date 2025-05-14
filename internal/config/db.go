@@ -19,7 +19,7 @@ func InitSQLite() *gorm.DB {
 }
 
 func InitMySQL() *gorm.DB {
-	dsn := "root:@tcp(127.0.0.1:3306)/main?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:@tcp(127.0.0.1:3306)/tccapp?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Error connecting to MySQL")
