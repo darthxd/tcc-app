@@ -1,0 +1,1 @@
+insert into students values (default,"Gabriel Henrique de Souza","12345","19999999999","2007-07-26 00:00:00.000","DS","3Y","gabriel@gmail.com","gabriel123",null,null,false)

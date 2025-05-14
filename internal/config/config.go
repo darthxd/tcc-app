@@ -11,7 +11,8 @@ var (
 
 func Init() {
 	port = ":8080"
-	db = InitDatabase()
+	// db = InitSQLite()
+	db = InitMySQL()
 }
 
 func GetDB() *gorm.DB {
