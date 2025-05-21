@@ -23,7 +23,7 @@
       <div class="flex flex-col rounded-md w-4/5 h-4/5 m-10 p-10 bg-[#383838] shadow">
         <h1 class="text-4xl text-center mb-8 text-gray-300">Alunos cadastrados</h1>
         <table>
-          <tr class="text-gray-300 text-center">
+          <tr class="text-gray-300 text-center h-10">
             <th>ID</th>
             <th>Nome</th>
             <th>RM</th>
@@ -32,6 +32,17 @@
             <th>Curso</th>
             <th>Série</th>
           </tr>
+          {{range $student := .students}}
+          <tr class="text-gray-300 text-center h-10">
+            <th>{{$student.ID}}</th>
+            <th>{{$student.Name}}</th>
+            <th>{{$student.RM}}</th>
+            <th>{{$student.CPF}}</th>
+            <th>{{$student.Email}}</th>
+            <th>{{$student.Course}}</th>
+            <th>{{formatGrade $student.Grade}}</th>
+          </tr>
+          {{end}}
         </table>
       </div>
     </div>

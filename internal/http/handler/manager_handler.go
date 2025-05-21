@@ -31,8 +31,14 @@ func AuthenticateManager(c echo.Context) schemas.Manager {
 }
 
 func ManagerHome(c echo.Context) error {
+	var students []schemas.Student
 	manager := AuthenticateManager(c)
+	result := db.Find(&students)
+	if result.Error != nil {
+		log.Print(result.Error)
+	}
 	return c.Render(http.StatusOK, "manager_home", echo.Map{
-		"manager": manager,
+		"students": students,
+		"manager":  manager,
 	})
 }
