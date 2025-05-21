@@ -38,7 +38,16 @@ func ManagerHome(c echo.Context) error {
 		log.Print(result.Error)
 	}
 	return c.Render(http.StatusOK, "manager_home", echo.Map{
-		"students": students,
+		"title":    "Alunos cadastrados",
 		"manager":  manager,
+		"students": students,
+	})
+}
+
+func ManagerNewStudent(c echo.Context) error {
+	manager := AuthenticateManager(c)
+	return c.Render(http.StatusOK, "manager_newstudent", echo.Map{
+		"title":   "Cadastrar aluno",
+		"manager": manager,
 	})
 }
