@@ -11,7 +11,10 @@ import (
 func RouterInit(port string) {
 	// Set up basic server settings
 	e := echo.New()
-	t := &handler.Template{Templates: template.Must(template.ParseGlob("internal/http/client/views/*.html"))}
+	t := &handler.Template{Templates: template.Must(template.New("").Funcs(template.FuncMap{
+		"formatGrade": FormatGrade,
+		"formatDate":  FormatDate,
+	}).ParseGlob("internal/http/client/views/*.html"))}
 	e.Renderer = t
 	e.Static("/assets", "internal/http/client/static")
 
