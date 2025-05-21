@@ -45,6 +45,21 @@ func LoginStudent(c echo.Context) error {
 	return nil
 }
 
+func LoginManager(c echo.Context) error {
+	user := c.FormValue("user")
+	password := c.FormValue("password")
+	session, err := auth.AuthenticateManager(user, password)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, echo.Map{
+			"error": err,
+		})
+	}
+	auth.SetCookie(c, "session", session.SessionId)
+
+	c.Response().Header().Set("HX-Redirect", "/gerenciamento")
+	return nil
+}
+
 func LogOut(c echo.Context) error {
 	auth.DeleteCookie(c, "session")
 

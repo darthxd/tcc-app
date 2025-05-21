@@ -26,7 +26,7 @@
                     <button hx-get="/login/professor" hx-target="#main" hx-swap="innerHTML" class="cursor-pointer px-6 py-2 text-lg font-medium border-t border-b border-gray-400 text-gray-400">
                         Professor
                     </button>
-                    <button  hx-get="/login/supervisao" hx-target="#main" hx-swap="innerHTML" class="cursor-pointer px-6 py-2 text-lg font-medium border border-gray-400 text-gray-400 rounded-r-lg">
+                    <button  hx-get="/login/gerenciamento" hx-target="#main" hx-swap="innerHTML" class="cursor-pointer px-6 py-2 text-lg font-medium border border-gray-400 text-gray-400 rounded-r-lg">
                         Supervisão
                     </button>
                 </div>
@@ -68,7 +68,7 @@
                     <button hx-get="/login/professor" hx-target="#main" hx-swap="innerHTML" class="cursor-pointer px-6 py-2 text-lg font-bold border-3 border-[#367dff] text-[#5994ff]">
                         Professor
                     </button>
-                    <button hx-get="/login/supervisao" hx-target="#main" hx-swap="innerHTML" class="cursor-pointer px-6 py-2 text-lg font-medium border-r border-t border-b border-gray-400 text-gray-400 rounded-r-lg">
+                    <button hx-get="/login/gerenciamento" hx-target="#main" hx-swap="innerHTML" class="cursor-pointer px-6 py-2 text-lg font-medium border-r border-t border-b border-gray-400 text-gray-400 rounded-r-lg">
                         Supervisão
                     </button>
                 </div>
@@ -96,9 +96,9 @@
 </div>
 {{end}}
 
-{{block "login_admin" .}}
+{{block "login_manager" .}}
 <div class="flex items-center justify-center p-20 w-2/3 h-4/5 bg-[#383838] border border-[#4f4f4f] rounded-2xl shadow-lg">
-    <form action="" method="post" class="flex flex-col items-center justify-between w-full h-full text-gray-200">
+    <form hx-post="/login/gerenciamento" method="post" class="flex flex-col items-center justify-between w-full h-full text-gray-200">
         <h1 class="flex items-center justify-center text-5xl h-25">Sistema XD</h1>
         <div class="flex flex-col items-center justify-center gap-y-5">
             <div class="flex items-center justify-center w-full">
@@ -110,7 +110,7 @@
                     <button hx-get="/login/professor" hx-target="#main" hx-swap="innerHTML" class="cursor-pointer px-6 py-2 text-lg font-medium border-t border-b border-gray-400 text-gray-400">
                         Professor
                     </button>
-                    <button hx-get="/login/supervisao" hx-target="#main" hx-swap="innerHTML" class="cursor-pointer px-6 py-2 text-lg font-bold border-3 border-[#367dff] text-[#5994ff] rounded-r-lg">
+                    <button hx-get="/login/gerenciamento" hx-target="#main" hx-swap="innerHTML" class="cursor-pointer px-6 py-2 text-lg font-bold border-3 border-[#367dff] text-[#5994ff] rounded-r-lg">
                         Supervisão
                     </button>
                 </div>

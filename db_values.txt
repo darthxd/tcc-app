@@ -1,1 +1,2 @@
-insert into students values (default,"Gabriel Henrique de Souza","12345","19999999999","2007-07-26 00:00:00.000","DS","3Y","gabriel@gmail.com","gabriel123",null,null,false)
+insert into students values (default,"Gabriel Henrique de Souza","12345","1234567890SP","12345678900","19999999999","2007-07-26 00:00:00.000","DS","3Y","gabriel@gmail.com","gabriel123",null,null,false)
+insert into managers values (default,"Admin","admin","admin")

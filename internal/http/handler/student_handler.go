@@ -11,7 +11,7 @@ import (
 	"github.com/labstack/gommon/log"
 )
 
-func StudentInfo(c echo.Context) error {
+func AuthenticateStudent(c echo.Context) schemas.Student {
 	db = config.GetDB()
 	cookie, err := c.Cookie("session")
 	if err != nil {
@@ -27,7 +27,11 @@ func StudentInfo(c echo.Context) error {
 			}
 		}
 	}
+	return student
+}
 
+func StudentInfo(c echo.Context) error {
+	student := AuthenticateStudent(c)
 	return c.Render(http.StatusOK, "student_home", echo.Map{
 		"title":   fmt.Sprintf("%s - Informações", student.Name),
 		"active":  "info",
@@ -36,19 +40,7 @@ func StudentInfo(c echo.Context) error {
 }
 
 func StudentMail(c echo.Context) error {
-	student := schemas.Student{}
-	sessions := auth.GetSessions()
-	cookie, _ := c.Cookie("session")
-	for _, s := range sessions {
-		if s.SessionId == cookie.Value {
-			if s.Type == "student" {
-				if err := db.Where("rm = ? AND password = ?", s.User, s.Password).First(&student).Error; err != nil {
-					log.Error(err)
-				}
-			}
-		}
-	}
-
+	student := AuthenticateStudent(c)
 	return c.Render(http.StatusOK, "student_mail", echo.Map{
 		"title":   fmt.Sprintf("%s - E-mail", student.Name),
 		"active":  "email",
@@ -57,18 +49,7 @@ func StudentMail(c echo.Context) error {
 }
 
 func StudentAccount(c echo.Context) error {
-	student := schemas.Student{}
-	sessions := auth.GetSessions()
-	cookie, _ := c.Cookie("session")
-	for _, s := range sessions {
-		if s.SessionId == cookie.Value {
-			if s.Type == "student" {
-				if err := db.Where("rm = ? AND password = ?", s.User, s.Password).First(&student).Error; err != nil {
-					log.Error(err)
-				}
-			}
-		}
-	}
+	student := AuthenticateStudent(c)
 
 	return c.Render(http.StatusOK, "student_account", echo.Map{
 		"title":   fmt.Sprintf("%s - Conta", student.Name),

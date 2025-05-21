@@ -36,7 +36,8 @@ func routesInit(e *echo.Echo) {
 	manager := e.Group("/gerenciamento")
 	{
 		manager.GET("", func(c echo.Context) error { return c.Redirect(http.StatusFound, "/gerenciamento/") })
-		manager.GET("/", auth.DefaultMiddleware("manager", handler.ManagerRender))
+		manager.GET("/", auth.DefaultMiddleware("manager", handler.ManagerHome))
+		manager.GET("/sair", auth.DefaultMiddleware("manager", handler.LogOut))
 	}
 
 	// Login page routes
@@ -48,6 +49,7 @@ func routesInit(e *echo.Echo) {
 		login.GET("/professor", handler.LoginTeacherRender)
 		login.GET("/gerenciamento", handler.LoginManagerRender)
 		login.POST("/aluno", handler.LoginStudent)
+		login.POST("/gerenciamento", handler.LoginManager)
 	}
 
 }

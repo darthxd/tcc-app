@@ -20,7 +20,20 @@
   <section class="flex h-screen w-full">
     {{template "manager_sidebar" .}}
     <div class="flex w-full justify-center items-center">
-      <h1>Página Gerenciamento</h1>
+      <div class="flex flex-col rounded-md w-4/5 h-4/5 m-10 p-10 bg-[#383838] shadow">
+        <h1 class="text-4xl text-center mb-8 text-gray-300">Alunos cadastrados</h1>
+        <table>
+          <tr class="text-gray-300 text-center">
+            <th>ID</th>
+            <th>Nome</th>
+            <th>RM</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Curso</th>
+            <th>Série</th>
+          </tr>
+        </table>
+      </div>
     </div>
   </section>
 </body>
@@ -115,18 +128,18 @@
 
 			<div class="border-t border-[#383838] flex p-3">
 				<img
-					src="https://cdn.discordapp.com/avatars/613715798816718919/3a3b62fd4f4e9c7f5baebfe57a803675?size=1024"
+					src="/assets/img/user_placeholder.png"
 					alt=""
-					class="w-10 h-10 rounded-full"
+					class="min-w-10 h-10 rounded-full"
 					:class=" expanded ? '' : 'mx-auto' "
 				/>
-				<div class="flex justify-between items-center overflow-hidden transition-all" :class=" expanded ? 'w-52 ml-3' : 'w-0 ml-0' ">
+				<div class="flex justify-between items-center overflow-hidden transition-all" :class=" expanded ? 'w-full ml-3' : 'w-0 ml-0' ">
 					<div class="leading-4">
-						<h4 class="font-semibold">Darthxd</h4>
-						<span class="text-xs text-gray-400">@darthxd</span>
+						<h4 class="font-semibold">{{.manager.Name}}</h4>
+						<span class="text-xs text-gray-400">@{{.manager.User}}</span>
 					</div>
-					<button class="cursor-pointer">
-            <i class="fa-solid fa-chevron-up"></i>
+          <button class="bg-[#a8323e] hover:bg-[#8c2a34] w-10 h-10 ml-auto cursor-pointer rounded-lg" hx-get="/gerenciamento/sair" :class="expanded ? 'w-10' : 'w-0'">
+            <i class="fa-solid fa-right-from-bracket"></i>
 					</button>
 				</div>
 			</div>
