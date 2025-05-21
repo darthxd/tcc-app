@@ -2,3 +2,4 @@
 tailwind.config.ts
 .air.toml
 /out
+/.vscode
