@@ -3,6 +3,7 @@ package handler
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/darthxd/tcc-app/internal/config"
 	"github.com/darthxd/tcc-app/internal/http/auth"
@@ -10,6 +11,11 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/gommon/log"
 )
+
+func (student studentRequest) genPassword() {
+	password := fmt.Sprintf("%s%s", strings.Split(student.Name, " ")[0], student.RM)
+	student.Password = password
+}
 
 func AuthenticateManager(c echo.Context) schemas.Manager {
 	db = config.GetDB()
@@ -39,6 +45,7 @@ func ManagerHome(c echo.Context) error {
 	}
 	return c.Render(http.StatusOK, "manager_home", echo.Map{
 		"title":    "Alunos cadastrados",
+		"active":   "alunos-cadastrados",
 		"manager":  manager,
 		"students": students,
 	})
@@ -46,8 +53,40 @@ func ManagerHome(c echo.Context) error {
 
 func ManagerNewStudent(c echo.Context) error {
 	manager := AuthenticateManager(c)
-	return c.Render(http.StatusOK, "manager_newstudent", echo.Map{
-		"title":   "Cadastrar aluno",
-		"manager": manager,
-	})
+	if c.Request().Method == http.MethodPost {
+
+		request := studentRequest{}
+
+		c.Bind(&request)
+
+		request.genPassword()
+
+		log.Print(request)
+
+		// student := schemas.Student{
+		// 	Name:      request.Name,
+		// 	RM:        request.RM,
+		// 	Phone:     request.Phone,
+		// 	Birthdate: request.Birthdate,
+		// 	Course:    request.Course,
+		// 	Grade:     request.Grade,
+		// 	Email:     request.Email,
+		// 	Password:  request.Password,
+		// 	CPF:       request.CPF,
+		// 	RA:        request.RA,
+		// }
+
+		// if err := db.Create(&student).Error; err != nil {
+		// 	log.Fatal(err)
+		// }
+
+		return c.Redirect(200, "/")
+
+	} else {
+		return c.Render(http.StatusOK, "manager_newstudent", echo.Map{
+			"title":   "Cadastrar aluno",
+			"active":  "cadastrar-aluno",
+			"manager": manager,
+		})
+	}
 }

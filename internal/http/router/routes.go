@@ -38,6 +38,7 @@ func routesInit(e *echo.Echo) {
 		manager.GET("", func(c echo.Context) error { return c.Redirect(http.StatusFound, "/gerenciamento/") })
 		manager.GET("/", auth.DefaultMiddleware("manager", handler.ManagerHome))
 		manager.GET("/cadastrar-aluno", auth.DefaultMiddleware("manager", handler.ManagerNewStudent))
+		manager.POST("/cadastrar-aluno", auth.DefaultMiddleware("manager", handler.ManagerNewStudent))
 		manager.GET("/sair", auth.DefaultMiddleware("manager", handler.LogOut))
 	}
 

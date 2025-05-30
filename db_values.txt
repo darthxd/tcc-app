@@ -1,5 +1,5 @@
-insert into students values (default,"Gabriel Henrique de Souza","12345","1234567890SP","12345678900","19999999999","2007-07-26 00:00:00.000","DS","3Y","gabriel@gmail.com","gabriel123",null,null,false)
-insert into students values (default,"Vinicius Mosna","33333","1234567890SP","12345678900","19999999999","2008-05-24 00:00:00.000","DID","1Y","mosna@gmail.com","vinicius123",null,null,false)
-insert into students values (default,"Gabriel Sita","22222","1234567890SP","12345678900","19999999999","2008-05-24 00:00:00.000","DS","3Y","sita@gmail.com","sita123",null,null,false)
-insert into students values (default,"Paulo Henrique Schmidt","11111","1234567890SP","12345678900","19999999999","2008-05-24 00:00:00.000","DS","3Y","paulo@gmail.com","paulo123",null,null,false)
-insert into managers values (default,"Admin","admin","admin")
+insert into students values (default,"Gabriel Henrique de Souza","12345","19999999999","2007-07-26 00:00:00.000","DS","3Y","gabriel@gmail.com","gabriel123",null,null,false,"12345678900","1234567890SP");
+insert into students values (default,"Vinicius Mosna","33333","19999999999","2008-05-24 00:00:00.000","DID","1Y","mosna@gmail.com","vinicius123",null,null,false,"12345678900","1234567890SP");
+insert into students values (default,"Gabriel Sita","22222","19999999999","2008-05-24 00:00:00.000","DS","3Y","sita@gmail.com","sita123",null,null,false,"12345678900","1234567890SP");
+insert into students values (default,"Paulo Henrique Schmidt","11111","19999999999","2008-05-24 00:00:00.000","DS","3Y","paulo@gmail.com","paulo123",null,null,false,"12345678900","1234567890SP");
+insert into managers values (default,"Admin","admin","admin");

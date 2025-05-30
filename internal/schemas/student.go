@@ -6,8 +6,6 @@ type Student struct {
 	ID        uint
 	Name      string
 	RM        string
-	RA        string
-	CPF       string
 	Phone     string
 	Birthdate time.Time
 	Course    string
@@ -17,4 +15,6 @@ type Student struct {
 	Photo     *string
 	Biometry  *string
 	InSchool  bool
+	CPF       string
+	RA        string
 }
